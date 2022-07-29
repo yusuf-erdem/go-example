@@ -29,6 +29,10 @@ jobs:
     - name: Test Go
       run: go test -v -json ./... > ./test-report.json
       
+    - name: Coverage Report
+      run: ./test.sh # automatically create coverage.txt
+      
+      
     - name: Analyze Test and/or Coverage Results
       if: always()
       uses: thundra-io/foresight-test-kit-action@v1
@@ -37,5 +41,7 @@ jobs:
         test_framework: golang
         test_format: json
         test_path: "./test-report.json"
+        coverage_format: golang
+        coverage_path: "./coverage.txt"
     
     
