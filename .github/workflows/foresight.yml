@@ -27,7 +27,7 @@ jobs:
         go-version: 1.18
 
     - name: Test Go
-      run: go test -json ./... > ./test-report.json
+      run: go test -v -json ./... > ./test-report.json
       
     - name: Analyze Test and/or Coverage Results
       if: always()
@@ -35,6 +35,7 @@ jobs:
       with:
         api_key: ${{ secrets.FORESIGHT_API_KEY }}
         test_framework: golang
+        test_format: json
         test_path: "./test-report.json"
     
     
